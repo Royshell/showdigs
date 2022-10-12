@@ -1,0 +1,38 @@
+.sd-asset-list-block {
+    display: flex;
+    width: 375px;
+    height: 104px;
+    margin-bottom: 20px;
+    border-radius: 15px ;
+    background: #EAF6F9;
+}
+
+.sd-asset-list-block-image {
+    width: 111px;
+    height: 108px;
+  
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.sd-asset-list-block-content {
+    padding: 20px 15px 15px 15px;
+    font-size: 15px;
+    line-height: 19px;
+    font-weight: 400;
+}
+
+.sd-asset-list-block-content-address {
+    font-size: 17px;
+    line-height: 21px;
+    color: #050505;
+}
+
+.sd-asset-list-block-content-address { 
+    font-weight: 700;
+    color: #555555;
+}
+
+.sd-asset-list-block-content-description { 
+    color: #FF7759;
+}
