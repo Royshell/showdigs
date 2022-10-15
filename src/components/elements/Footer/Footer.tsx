@@ -9,7 +9,6 @@ const Footer = (): JSX.Element => {
 
     useEffect(() => {
       const currentPropertiesCount = JSON.parse(localStorage.getItem('assets') || '[]').length as number;
-      console.log(currentPropertiesCount);
       setPropertiesCount(currentPropertiesCount);
   },[]);
 

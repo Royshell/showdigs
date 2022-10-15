@@ -17,7 +17,14 @@
 }
 
 .swiper-slide {
-
     display: flex;
     justify-content: center
+}
+
+.swiper.swiper-initialized .swiper-button-next {
+    right: 0;
+}
+
+.swiper.swiper-initialized .swiper-button-prev {
+    left: 0;
 }
