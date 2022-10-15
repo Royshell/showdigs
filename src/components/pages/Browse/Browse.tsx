@@ -11,7 +11,8 @@ import _ from 'lodash';
 import { Property } from '../../../App';
 
 const API_URL = 'https://organic-ursinia.glitch.me/';
-const API_REQUESTS_COUNT = 5;
+const API_REQUESTS_COUNT = 10;
+const TRIGGER_BEFORE_SLIDES_COUNT = 5;
 
 const BrowsePage = (): JSX.Element => {
 
@@ -31,8 +32,8 @@ const BrowsePage = (): JSX.Element => {
 
 
 
-    const getProperties = async(amount: number): Promise<Property[]> => {
-        setIsLoading(true);
+    const getProperties = async(amount: number, disableLoad = false): Promise<Property[]> => {
+        setIsLoading(!disableLoad);
         const propertiesToAdd: Property[] = [];
         for(let i = 0; i < amount; i++) {
             const property = await getProperty();
@@ -46,13 +47,13 @@ const BrowsePage = (): JSX.Element => {
 
     const handleSwipe = (currentIndex: number) => {
         setCurrentIndex(currentIndex);
-        if (currentIndex === properties.length - 1) {
+        if (currentIndex === properties.length - TRIGGER_BEFORE_SLIDES_COUNT) {
             fetchMoreProperties(currentIndex);
         }
     }
 
     const fetchMoreProperties = async (currentIndex: number) => {
-        const propertiesToAdd: Property[]  = await getProperties(API_REQUESTS_COUNT);
+        const propertiesToAdd: Property[]  = await getProperties(API_REQUESTS_COUNT, true);
         const currentProperties: Property[] = [...properties];
         setProperties([...currentProperties, ...propertiesToAdd]);
     }
@@ -84,7 +85,7 @@ const BrowsePage = (): JSX.Element => {
             <Swiper
                 onSwiper={(swiper) => setSwiperInstance(swiper)}
                 navigation
-                initialSlide={properties.length - 1 - API_REQUESTS_COUNT}
+                initialSlide={currentIndex}
                 modules={[Navigation]}
                 onSlideChange={({activeIndex}) => handleSwipe(activeIndex)}
           >  
